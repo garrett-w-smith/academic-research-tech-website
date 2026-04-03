@@ -38,13 +38,11 @@
 
         * { box-sizing: border-box; }
 
-        /* ✅ New: smooth scrolling */
         html {
             scroll-padding-top: 78px;
             scroll-behavior: smooth;
         }
 
-        /* ✅ New: respect reduced motion */
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             * { transition: none !important; }
@@ -165,8 +163,6 @@
             border: 1px solid transparent;
             text-decoration: none;
             white-space: nowrap;
-
-            /* ✅ Updated: smoother + more noticeable */
             transition:
                     transform 160ms ease,
                     box-shadow 160ms ease,
@@ -175,7 +171,6 @@
                     border-color 160ms ease;
         }
 
-        /* ✅ Updated: better baseline shadow + hover lift */
         .btn.primary {
             background: var(--accent-primary);
             color: #fff;
@@ -241,27 +236,42 @@
         }
 
         .band.illus-band {
-            background: rgb(251, 250, 250); /* sampled from illustration bg */
+            background: rgb(251, 250, 250);
             border-top: 1px solid var(--border-subtle);
             border-bottom: 1px solid var(--border-subtle);
         }
 
-        /* Group list (Types of Projects) */
-        .group-list {
-            margin-top: 1.25rem;
+        /* Project grid (two-column compact) */
+        .project-grid {
             display: grid;
-            gap: 1rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.85rem;
+            margin-top: 1.5rem;
         }
 
-        .group-item {
-            padding: 1rem 1.1rem;
+        @media (max-width: 700px) {
+            .project-grid { grid-template-columns: 1fr; }
+        }
+
+        .project-item {
+            padding: 0.9rem 1.1rem;
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius);
             background: #fff;
+            box-shadow: var(--shadow-soft);
         }
 
-        .group-item p { margin: 0.4rem 0; }
-        .group-item .muted { margin-top: .25rem; }
+        .project-item h3 {
+            font-size: 1rem;
+            margin: 0 0 0.3rem;
+        }
+
+        .project-item p {
+            margin: 0;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
 
         /* Bullets */
         ul {
@@ -300,7 +310,6 @@
             z-index: 9999;
         }
 
-        /* Small helper spacing */
         .stack { display: grid; gap: 1rem; }
 
         /* ---------- Sticky header + wordmark ---------- */
@@ -388,7 +397,7 @@
 
         @media (max-width: 860px) {
             .brand-tagline { display: none; }
-            .nav a:not(.btn) { display: none; } /* keep just the Contact button */
+            .nav a:not(.btn) { display: none; }
         }
 
         @media (max-width: 720px) {
@@ -433,7 +442,7 @@
 
                 <p class="tagline">
                     Academic Research Technologies LLC partners with research groups, educational programs, and
-                    mission-driven organizations to build, maintain, and improve software over time. We’re flexible in
+                    mission-driven organizations to build, maintain, and improve software over time. We're flexible in
                     how we engage and are accustomed to working within the practical constraints of research —
                     timelines, budgets, and institutional processes.
                 </p>
@@ -450,11 +459,9 @@
             </div>
 
             <!-- Abstract Illustration (Hero) -->
-            <div class="illus" >
+            <div class="illus">
                 <div style="width: 100%;">
-                    <img style="width: 140%;
-               max-width: none;
-               transform: translate(-5%, -3%);" src="first.png"
+                    <img style="width: 140%; max-width: none; transform: translate(-5%, -3%);" src="first.png"
                          alt="Abstract illustration representing interconnected research software systems, data flows, and collaboration across projects."/>
                 </div>
             </div>
@@ -470,7 +477,7 @@
             <p class="lede">
                 Research and educational software often evolves over many years, across changing teams,
                 funding sources, and technical environments. We work with groups at all points along that
-                path — whether you’re starting something new, inheriting an existing system, or trying
+                path — whether you're starting something new, inheriting an existing system, or trying
                 to keep important software running smoothly.
             </p>
 
@@ -563,120 +570,68 @@
             <p class="lede">
                 Research and educational software takes many forms — from new ideas and pilot projects
                 to long-running systems that have evolved across multiple grants, teams, and technologies.
-            </p>
-
-            <p class="lede">
-                We’re comfortable working with projects at any of these stages, including inherited systems,
+                We're comfortable working with projects at any of these stages, including inherited systems,
                 tight timelines, and well-defined improvement goals.
             </p>
 
-            <p class="lede">
-                Examples of the kinds of projects we support include:
-            </p>
+            <div class="project-grid" role="list">
 
-            <div class="group-list" role="list">
-
-                <article class="group-item card elevated" role="listitem">
+                <article class="project-item" role="listitem">
                     <h3>Data-Driven Web Applications</h3>
-                    <p class="muted">
-                        Applications that collect, manage, and present research or operational data over long time
-                        horizons.
-                    </p>
+                    <p>Applications that collect, manage, and present research or operational data over long time horizons.</p>
                 </article>
 
-                <article class="group-item card elevated" role="listitem">
-                    <h3>User Interface, User Experience &amp; Accessibility Improvements</h3>
-                    <p class="muted">
-                        Targeted improvements to existing software focused on usability, accessibility, responsiveness,
-                        and clarity. Common goals include improving usability, addressing accessibility issues
-                        aligned with WCAG guidance, updating outdated interfaces, and improving mobile and responsive
-                        behavior.
-                    </p>
+                <article class="project-item" role="listitem">
+                    <h3>Legacy Systems &amp; Modernization</h3>
+                    <p>Incremental upgrades that reduce risk and improve maintainability while preserving existing workflows.</p>
                 </article>
 
-                <article class="group-item card elevated" role="listitem">
-                    <h3>Research Databases &amp; Data Management Systems</h3>
-                    <p class="muted">
-                        Custom data models and storage systems that support lab workflows, longitudinal studies,
-                        and evolving research needs.
-                    </p>
+                <article class="project-item" role="listitem">
+                    <h3>Integrations &amp; Automated Data Pipelines</h3>
+                    <p>Connections between research platforms like REDCap and Qualtrics, external APIs, and automated data flows.</p>
                 </article>
 
-                <article class="group-item card elevated" role="listitem">
-                    <h3>Integrations & Automated Data Pipelines</h3>
-                    <p class="muted">
-                        Systems that connect research platforms and external services to automate data flow. This
-                        includes integrations with platforms such as REDCap and Qualtrics, as well as pipelines for
-                        ingesting, validating, transforming, and exporting data — including integrations with external
-                        and government APIs.
-                    </p>
+                <article class="project-item" role="listitem">
+                    <h3>Research Databases &amp; Data Management</h3>
+                    <p>Custom data models supporting lab workflows, longitudinal studies, and evolving research needs.</p>
                 </article>
 
-                <article class="group-item card elevated" role="listitem">
-                    <h3>Citizen Science &amp; Community-Engaged Platforms</h3>
-                    <p class="muted">
-                        Public-facing platforms that support large, distributed audiences contributing data
-                        or participating over time.
-                    </p>
+                <article class="project-item" role="listitem">
+                    <h3>Citizen Science &amp; Community Platforms</h3>
+                    <p>Public-facing platforms supporting large, distributed audiences contributing data over time.</p>
                 </article>
 
-                <article class="group-item card elevated" role="listitem">
-                    <h3>Interactive Data Visualizations &amp; Dashboards</h3>
-                    <p class="muted">
-                        Visual tools that help researchers, educators, and the public explore and understand complex
-                        datasets.
-                    </p>
+                <article class="project-item" role="listitem">
+                    <h3>Interactive Visualizations &amp; Dashboards</h3>
+                    <p>Tools that help researchers, educators, and the public explore and understand complex datasets.</p>
                 </article>
 
-                <article class="group-item card elevated" role="listitem">
-                    <h3>Educational Simulations &amp; Interactive Learning Tools</h3>
-                    <p class="muted">
-                        Applications designed to support teaching, learning, and instructional research.
-                    </p>
+                <article class="project-item" role="listitem">
+                    <h3>UI, UX &amp; Accessibility Improvements</h3>
+                    <p>Targeted improvements to usability, accessibility, and responsiveness in existing software.</p>
                 </article>
 
-                <article class="group-item card elevated" role="listitem">
-                    <h3>Mobile &amp; Cross-Platform Research Applications</h3>
-                    <p class="muted">
-                        Applications supporting data collection, study participation, or field-based research workflows.
-                    </p>
+                <article class="project-item" role="listitem">
+                    <h3>Educational Simulations &amp; Learning Tools</h3>
+                    <p>Applications designed to support teaching, learning, and instructional research.</p>
                 </article>
 
-                <article class="group-item card elevated" role="listitem">
-                    <h3>Research Dissemination &amp; Public Scholarship Websites</h3>
-                    <p class="muted">
-                        Platforms focused on sharing research outputs, datasets, and findings with broader audiences.
-                    </p>
+                <article class="project-item" role="listitem">
+                    <h3>Mobile &amp; Cross-Platform Applications</h3>
+                    <p>Tools supporting data collection, study participation, and field-based research workflows.</p>
                 </article>
 
-                <article class="group-item card elevated" role="listitem">
+                <article class="project-item" role="listitem">
+                    <h3>Research Dissemination &amp; Public Scholarship</h3>
+                    <p>Platforms for sharing research outputs, datasets, and findings with broader audiences.</p>
+                </article>
+
+                <article class="project-item" role="listitem">
                     <h3>Research Infrastructure &amp; Backend Services</h3>
-                    <p class="muted">
-                        APIs, authentication systems, background services, and other components that support reliable
-                        operation.
-                    </p>
+                    <p>APIs, authentication, background services, and other components supporting reliable operation.</p>
                 </article>
-
-                <article class="group-item card elevated" role="listitem">
-                    <h3>Legacy Research Systems &amp; Modernization Efforts</h3>
-                    <p class="muted">
-                        Incremental upgrades that reduce risk and improve maintainability while preserving existing
-                        workflows.
-                    </p>
-                </article>
-
-                <!--<article class="group-item card elevated" role="listitem">
-                  <h3>Custom Administrative &amp; Management Tools</h3>
-                  <p class="muted">
-                    Internal tools for managing enrollment, permissions, workflows, reporting, and project operations.
-                  </p>
-                </article>-->
 
             </div>
-
-            <p class="lede" style="margin-top: 1.25rem;">
-                This list is illustrative rather than exhaustive; projects vary widely and are shaped by institutional context, project goals, and practical constraints.
-            </p>
 
         </div>
     </section>
@@ -697,7 +652,7 @@
                     </p>
                     <p class="lede">
                         Our experience spans web and mobile applications, data management systems, integrations,
-                        infrastructure, and automation. As projects evolve, we’re comfortable onboarding into new
+                        infrastructure, and automation. As projects evolve, we're comfortable onboarding into new
                         languages, frameworks, and platforms as needed.
                     </p>
                     <p class="lede">
@@ -723,7 +678,7 @@
     <section id="sustainability" class="band illus-band" style="background-color: rgb(254,252,254)">
         <div class="container grid-2-reverse">
             <!-- Abstract Illustration (Sustainability) -->
-            <div class="illus" >
+            <div class="illus">
                 <div style="width: 100%;">
                     <img src="second.png"
                          style="width: 120%; max-width: none; transform: translate(-10%, -3%);"
@@ -834,16 +789,47 @@
             </div>
 
             <p class="lede" style="margin-top: 1.25rem;">
-                Many teams start with one engagement type and evolve over time. We’re comfortable adjusting
-                scope and approach as projects, funding, and priorities change. If you’re unsure which model fits,
-                that’s normal — we’ll talk it through.
+                Many teams start with one engagement type and evolve over time. We're comfortable adjusting
+                scope and approach as projects, funding, and priorities change. If you're unsure which model fits,
+                we'll talk it through.
             </p>
         </div>
     </section>
 
 
+    <!-- ABOUT -->
+    <section id="about" class="band">
+        <div class="container">
+            <div class="section-kicker">About</div>
+            <h2>About Academic Research Technologies LLC</h2>
+
+            <div class="grid-2">
+                <p class="lede" style="margin: 0;">
+                    Academic Research Technologies LLC is led by Garrett Smith, a software developer with 13 years
+                    of experience building and maintaining software across a wide range of research and educational
+                    contexts. Garrett works full-time at the University of Wisconsin, where he has spent his career
+                    working closely with research teams, academic programs, and the practical realities of university
+                    software — funding cycles, institutional constraints, and systems that need to keep running long
+                    after a project ends. ART LLC operates independently and is not affiliated with the University
+                    of Wisconsin.
+                </p>
+
+                <div class="card elevated">
+                    <h3 style="margin-top: 0;">Working independently</h3>
+                    <p class="muted">
+                        Academic Research Technologies LLC operates as an independent consulting practice, working
+                        alongside universities, nonprofits, and research organizations across institutions.
+                        Engagements are handled with the same care and professionalism you'd expect from an
+                        in-house team — with the flexibility of an external partner.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- WHO WE WORK WITH + GETTING STARTED -->
-    <section class="band">
+    <section class="band alt">
         <div class="container grid-2">
             <div class="stack">
 
@@ -858,12 +844,11 @@
                     <p class="lede">
                         This includes universities and academic units, nonprofit and educational organizations, and
                         multi-institution collaborations. Engagements may be project-based, retainer-based,
-                        or advisory, depending on what’s most useful for the team.
+                        or advisory, depending on what's most useful for the team.
                     </p>
 
                     <p class="lede">
-                        Academic Research Technologies LLC operates independently and works alongside a wide range of institutions.
-                        Examples and references can be shared as part of initial conversations.
+                        References can be shared as part of initial conversations.
                     </p>
                 </div>
 
@@ -877,8 +862,7 @@
 
                     <p class="lede">
                         A typical first conversation covers the current state of the software, who uses it, timing or funding
-                        constraints, and possible engagement models. If a project isn’t a good fit, that’s identified early
-                        and transparently.
+                        constraints, and possible engagement models. We're selective about fit, and identify that early.
                     </p>
                 </div>
             </div>
@@ -887,18 +871,18 @@
                 <h2>Contact</h2>
 
                 <p class="lede">
-                    If you’re interested in starting a conversation, it’s helpful to include:
+                    If you're interested in starting a conversation, it's helpful to include:
                 </p>
 
                 <ul>
                     <li>A brief description of the software or system</li>
                     <li>The organizational context (e.g., university unit, nonprofit)</li>
-                    <li>What kind of help you’re looking for (development, maintenance, planning, or grant support)</li>
+                    <li>What kind of help you're looking for (development, maintenance, planning, or grant support)</li>
                     <li>Any known timeline or funding constraints</li>
                 </ul>
 
                 <p class="lede">
-                    This isn’t a formal intake — just enough context to make the conversation productive.
+                    This isn't a formal intake — just enough context to make the conversation productive.
                 </p>
 
                 <div class="actions">
